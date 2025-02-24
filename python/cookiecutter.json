@@ -6,6 +6,7 @@
   "github_url": "https://github.com/{{ cookiecutter.github_slug }}",
   "pypi_url": "https://pypi.org/project/{{ cookiecutter.project_slug }}",
   "_copy_without_render": [
-    "*.j2"
+    "*.j2",
+    "Justfile"
   ]
 }
