@@ -6,7 +6,7 @@
 
 ```shell
 git submodule add https://github.com/makukha/jist .jist
-uvx cookiecutter .jist/python -o .
+uvx cookiecutter .jist/python -f -o ..
 ```
 
 2. Update `pyproject.toml`
