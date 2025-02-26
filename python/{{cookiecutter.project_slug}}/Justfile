@@ -17,17 +17,6 @@ init:
 
 # develop
 
-# synchronize dev environment
-[group('develop')]
-sync:
-    git submodule update --remote .jist
-    uv sync --all-extras --all-groups
-
-# update dev environment
-[group('develop')]
-upgrade:
-    uv sync --all-extras --all-groups --upgrade
-
 # run linters
 [group('develop')]
 lint:
