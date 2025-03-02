@@ -1,6 +1,6 @@
 # {{ cookiecutter.project_slug }}
 <!-- docsub: begin -->
-<!-- docsub: include docs/desc.md -->
+<!-- docsub: exec yq .project.description pyproject.toml -->
 <!-- docsub: end -->
 
 <!-- docsub: begin -->

@@ -12,10 +12,28 @@ default:
 [group('initialize'), macos]
 init:
     sudo port install gh git uv yq
-    just init-hooks
+    just git-hooks
     just sync
 
 # develop
+
+# synchronize dev environment
+[group('develop')]
+sync:
+    uv sync --all-extras --all-groups
+    make requirements
+
+# update dev environment
+[group('develop')]
+upgrade:
+    # jist
+    rm -rf .jist
+    wget https://github.com/makukha/jist/archive/refs/heads/main.zip
+    unzip -j main.zip -x '*/*/*' -d .jist
+    rm main.zip
+    # python
+    uv sync --all-extras --all-groups --upgrade
+    make requirements
 
 # run linters
 [group('develop')]
@@ -27,6 +45,7 @@ lint:
 # run tests
 [group('develop')]
 test *toxargs: build
+    make tests/requirements.txt
     time docker compose run --rm -it tox \
         {{ if toxargs == "" { "run-parallel" } else { "run" } }} \
          --installpkg="$(find dist -name '*.whl')" {{toxargs}}

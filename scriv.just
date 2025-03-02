@@ -7,4 +7,3 @@ news:
 [group('project')]
 changelog:
     uv run scriv collect
-    sed -i '' -e 's/^#* \*\*\*/***/' CHANGELOG.md
