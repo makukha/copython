@@ -3,12 +3,20 @@
 
 ## Usage
 
-### Seed new project
+### Install
 
 ```shell
 uv tool install --with jinja2-shell-extension --with jinja2-time copier
+```
+
+### Seed new project
+
+```shell
 uvx copier copy --trust --vcs-ref main gh:makukha/copier-python .
+
 just init
+jus sync
+just pre-merge
 ```
 
 ### Test template locally
@@ -16,6 +24,7 @@ just init
 ```shell
 uvx copier copy --trust --vcs-ref main . .tmp
 cd .tmp
+
 just init
 just sync
 just pre-merge
