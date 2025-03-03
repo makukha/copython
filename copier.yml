@@ -23,10 +23,6 @@ project_name:
   help: What is the project name?
   default: "{{ github_slug.split('/')[1] }}"
 
-project_description:
-  type: str
-  help: What does the project do in one sentence?
-
 module_name:
   type: str
   help: What is the Python module name?
