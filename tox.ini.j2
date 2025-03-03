@@ -13,7 +13,7 @@ commands =
   python -m mypy .
   pytest -x \
     --doctest-modules \
-    --cov=copier_python \
+    --cov={{ module_name }} \
     --cov-branch \
     --cov-precision=1 \
     --cov-report=term \

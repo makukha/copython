@@ -17,5 +17,6 @@ just init
 uvx copier copy --trust --vcs-ref main . .tmp
 cd .tmp
 just init
+just sync
 just pre-merge
 ```
