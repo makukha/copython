@@ -62,7 +62,7 @@ pypi_package_name:
 pypi_url:
   type: str
   help: "Calculated PyPI url:"
-  default: https://pypi.org/projects/{{ pypi_package_name }}
+  default: https://pypi.org/project/{{ pypi_package_name }}
 
 # docs
 
