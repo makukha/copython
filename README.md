@@ -15,7 +15,6 @@ uv tool install --with jinja2-shell-extension --with jinja2-time copier
 uvx copier copy --trust --vcs-ref main gh:makukha/copier-python .
 
 just init
-jus sync
 just pre-merge
 ```
 
