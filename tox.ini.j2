@@ -20,7 +20,7 @@ commands =
     --cov-report=html:.tmp/htmlcov \
     --cov-report=xml:.tmp/coverage.xml \
     --junitxml=.tmp/tests.xml \
-    tests
+    src tests
 
 # without mypy, pytest
 [testenv:py27,py3{5,6,7}]
@@ -33,7 +33,7 @@ commands =
 [testenv:py3{8,9,10,11,12,13,13t}]
 commands =
   python -m mypy .
-  pytest -x --doctest-modules tests
+  pytest -x --doctest-modules src tests
 
 [testenv:py3{14,14t}]
 allowlist_externals = bash
@@ -47,4 +47,4 @@ commands =
     fi'
   pip install -r {envdir}/requirements.txt
   python -m mypy .
-  pytest -x --doctest-modules tests
+  pytest -x --doctest-modules src tests
