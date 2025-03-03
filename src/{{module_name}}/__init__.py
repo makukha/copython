@@ -1,8 +1,6 @@
 from .__version__ import __version__
 
-__all__ = [
-    '__version__',
-]
+__all__ = []
 
 
 # todo: remove these dummy lines
