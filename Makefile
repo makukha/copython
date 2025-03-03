@@ -25,7 +25,7 @@ docs: sphinx README.md
 
 .PHONY: sphinx
 sphinx: docs/sphinx/_build
-docs/sphinx/_build: docs/*.md docs/**/*.* src/**/*.*
+docs/sphinx/_build: docs/*.md docs/sphinx/*.* src/**/*.*
 	rm -rf $@
 	cd docs/sphinx && uv run sphinx-build -b html . _build
 
