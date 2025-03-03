@@ -15,10 +15,10 @@ docs/img/badge/%.svg: .tmp/%.xml
 
 .PHONY: requirements
 requirements: docs/sphinx/requirements.txt tests/requirements.txt
-docs/sphinx/requirements.txt: pyproject.toml uv.lock
-	uv export --frozen --no-emit-project --only-group sphinx > $@
-tests/requirements.txt: pyproject.toml uv.lock
-	uv export --frozen --no-emit-project --only-group testing > $@
+docs/sphinx/requirements.txt: uv.lock
+	uv export --frozen --only-group sphinx > $@
+tests/requirements.txt: uv.lock
+	uv export --frozen --only-group testing > $@
 
 .PHONY: docs
 docs: sphinx README.md
@@ -27,7 +27,7 @@ docs: sphinx README.md
 sphinx: docs/_build
 docs/_build: docs/usage.md docs/**/*.* src/**/*.*
 	rm -rf $@
-	cd docs && uv run sphinx-build -b html . _build
+	cd docs/sphinx && uv run sphinx-build -b html . _build
 
 README.md: docs/usage.md FORCE
 	uv run docsub sync -i $@

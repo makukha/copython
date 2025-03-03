@@ -1,0 +1,104 @@
+_answers_file: .copier-answers.yml
+_jinja_extensions:
+  - jinja2_shell_extension.ShellExtension
+  - jinja2_time.TimeExtension
+_templates_suffix: .j2
+
+# source code
+
+github_url:
+  type: str
+  help: What is the GitHub repository url?
+  default: "{{ 'git config --get remote.origin.url' | shell | trim | replace('.git', '') }}"
+
+github_slug:
+  type: str
+  help: "Calculated GitHub slug:"
+  default: "{{ github_url |  replace('https://github.com/', '') }}"
+
+# metadata
+
+project_name:
+  type: str
+  help: What is the project name?
+  default: "{{ github_slug.split('/')[1] }}"
+
+project_description:
+  type: str
+  help: What does the project do in one sentence?
+
+module_name:
+  type: str
+  help: What is the Python module name?
+  default: "{{ project_name | lower | replace('-', '_') }}"
+
+project_version:
+  type: str
+  help: What is the project version?
+  default: 0.0.0
+
+author_name:
+  type: str
+  help: What is the name of the primary author?
+  default: "{{ 'git config --get user.name' | shell | trim }}"
+
+author_email:
+  type: str
+  help: What is the email address of the primary author?
+  default: "{{ 'git config --get user.email' | shell | trim }}"
+
+copyright_year:
+  type: int
+  help: What is the copyright year?
+  default: "{% now 'local', '%Y' %}"
+
+# pypi
+
+pypi_package_name:
+  type: str
+  help: What is the PyPI package name?
+  default: "{{ project_name | lower | replace('_', '-') }}"
+
+pypi_url:
+  type: str
+  help: "Calculated PyPI url:"
+  default: https://pypi.org/projects/{{ pypi_package_name }}
+
+# docs
+
+docs:
+  type: str
+  help: How will the project documentation?
+  choices:
+    ReadTheDocs: readthedocs
+    GitHub README.md: github_readme
+
+docs_url:
+  type: str
+  help: What is the documentation url?
+  default: "
+    {%- if docs == 'github_readme' -%}
+      {{ github_url }}#readme
+    {%- elif docs == 'readthedocs' -%}
+      https://{{ project_name }}.readthedocs.io
+    {%- endif -%}
+    "
+
+readthedocs_tool:
+  type: str
+  help: What documentation tool supported by ReadTheDocs will be used?
+  choices:
+    Sphinx: sphinx
+  when: "{% if docs == 'readthedocs' %}true{% endif %}"
+
+# development
+
+python_version:
+  type: str
+  help: What is the development Python version? See https://www.python.org/downloads
+  placeholder: 3.x.y
+
+python_version_minor:
+  type: str
+  help: "Calculated minor Python version:"
+  default: "{{ python_version.rsplit('.', 1)[0] }}"

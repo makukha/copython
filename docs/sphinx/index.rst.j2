@@ -1,0 +1,43 @@
+{{ project_name }}
+{{ '=' * (project_name | length) }}
+
+| *{{ project_description }}*
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Details
+    :hidden:
+
+    api
+    changelog
+
+.. include:: ../badges.md
+    :parser: commonmark
+
+.. include:: ../features.md
+    :parser: commonmark
+
+
+Installation
+------------
+
+.. tab-set::
+
+    .. tab-item:: pip
+
+        .. code:: shell
+
+            $ pip install {{ pypi_package_name }}
+
+    .. tab-item:: uv
+
+        .. code:: shell
+
+            $ uv add {{ pypi_package_name }}
+
+
+Use cases
+---------
+
+.. include:: ../usage.md
+    :parser: commonmark
