@@ -30,5 +30,5 @@ just pre-merge
 Update local testing instance:
 
 ```shell
-uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) --data-file .tmp/.copier-answers.yml . .tmp
+uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) --data-file .tmp/.copier-answers.yml --overwrite . .tmp
 ```
