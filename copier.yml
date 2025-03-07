@@ -98,3 +98,10 @@ python_version_minor:
   type: str
   help: "Calculated minor Python version:"
   default: "{{ python_version.rsplit('.', 1)[0] }}"
+
+# badges
+
+opessf_bp_id:
+  type: str
+  help: What is the project's OpenSSF Best Practices id?
+  default: ""
