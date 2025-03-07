@@ -80,11 +80,6 @@ docs_url:
     {%- endif -%}
     "
 
-changelog_url:
-  type: str
-  help: "Calculated project changelog url:"
-  default: "{{ github_url }}/blob/main/CHANGELOG.md"
-
 readthedocs_tool:
   type: str
   help: What documentation tool supported by ReadTheDocs will be used?
