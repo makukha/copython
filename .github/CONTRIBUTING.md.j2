@@ -1,0 +1,98 @@
+# Contribution guidelines
+
+We would appreciate your contributions:
+
+- Feature requests
+- Bug reports
+- Pull requests
+- [Security vulnerability reports]({{ github_url }}/blob/main/.github/SECURITY.md)
+
+
+## Feature requests and bug reports
+
+Please [create an issue]({{ github_url }}/issues).
+
+
+## Pull requests
+
+If the change proposed is not trivial, like typo in docs, please create an issue first.
+
+### Prerequisites
+
+You will need:
+
+- [uv](https://docs.astral.sh/uv/)
+- [Just](https://just.systems/man/en/)
+- [GNU make](https://www.gnu.org/software/make/make.html)
+- [Docker](https://www.docker.com)
+- [Git](https://git-scm.com)
+
+### Initialize dev environment
+
+- Fork project repository [{{ github_slug }}]({{ github_url }}) under your account.
+- Create feature branch in your fork.
+- Clone and install Python packages:
+
+```shell
+git clone https://github.com/<YOUR_USER_NAME>/{{ project_name }}.git
+just sync
+```
+
+### Development commands
+
+#### Write code
+
+The code will be checked with [Ruff](https://github.com/astral-sh/ruff) and
+[mypy](https://mypy.readthedocs.io). See `pyproject.toml` for details.
+
+#### Run lint and format checks
+
+```shell
+just lint
+```
+
+There must be no errors.
+
+#### Run tests
+
+* Fast, the main testing configuration only:
+
+    ```shell
+    just test -m main
+    ```
+
+* The whole test matrix (will take some time):
+
+    ```shell
+    just test
+    ```
+* Debug single failing tox environment other than "main":
+
+    ```shell
+    just test -e <TOX ENV NAME>
+    ```
+
+    See `tox.ini` for details.
+
+#### Build docs
+
+```shell
+just docs
+```
+
+There must be no errors.
+
+#### Add changelog entry
+
+```shell
+just news
+```
+
+Edit the new `*.md` file added under `NEWS.d/`: uncomment the appropriate
+section and describe what was done in your pull request.
+
+#### Create pull request
+
+The project maintainers will get back to review your PR.
+
+Thank you for your valuable contribution!
