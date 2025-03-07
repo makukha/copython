@@ -26,19 +26,17 @@ You will need:
 - Create feature branch in your fork.
 - Clone and install Python packages:
 
-```shell
-git clone https://github.com/<YOUR_USER_NAME>/{{ project_name }}.git
-just sync
-```
+    ```shell
+    git clone https://github.com/<YOUR_USER_NAME>/{{ project_name }}.git
+    just sync
+    ```
 
-### Development commands
-
-#### Write code
+### Write code
 
 The code will be checked with [Ruff](https://github.com/astral-sh/ruff) and
 [mypy](https://mypy.readthedocs.io). See `pyproject.toml` for details.
 
-#### Run lint and format checks
+### Run lint and format checks
 
 ```shell
 just lint
@@ -46,7 +44,7 @@ just lint
 
 There must be no errors.
 
-#### Run tests
+### Run tests
 
 * Fast, the main testing configuration only:
 
@@ -67,7 +65,7 @@ There must be no errors.
 
     See `tox.ini` for details.
 
-#### Build docs
+### Build docs
 
 ```shell
 just docs
@@ -75,7 +73,7 @@ just docs
 
 There must be no errors.
 
-#### Add changelog entry
+### Add future changelog entry
 
 ```shell
 just news
@@ -84,7 +82,7 @@ just news
 Edit the new `*.md` file added under `NEWS.d/`: uncomment the appropriate
 section and describe what was done in your pull request.
 
-#### Create pull request
+### Create pull request
 
 The project maintainers will get back to review your PR.
 
