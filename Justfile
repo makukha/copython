@@ -2,6 +2,8 @@ import? '.just/changelog.just'
 import? '.just/gh.just'
 import? '.just/version.just'
 
+set shell := ['zsh', '-c']
+
 # list available commands
 default:
     @just --list
