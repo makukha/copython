@@ -18,9 +18,9 @@ seed:
     echo -e "#!/usr/bin/env bash\njust pre-commit" > .git/hooks/pre-commit
 
 # initialize dev environment
-[group('develop'), macos]
+[group('develop'), linux, macos]
 pre:
-    sudo port install gh git uv yq
+    brew install gh git uv yq
 
 # synchronize dev environment
 [group('develop')]
