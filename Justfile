@@ -51,7 +51,8 @@ tox-provision:
 [group('develop')]
 test *toxargs: build
     make tests/requirements.txt
-    rm -f .tox/*/.pass-*
+    mkdir -p .tox
+    find .tox -name '.pass-*' -delete
     {{ if toxargs == "" { "just tox-provision" } else { "" } }}
     time docker compose run --rm -it tox \
         {{ if toxargs == "" { "run-parallel" } else { "run" } }} \
