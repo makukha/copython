@@ -15,7 +15,7 @@ default:
 # run once on project creation
 [group('develop')]
 seed:
-    echo -e "#!/usr/bin/env bash\njust pre-commit" > .git/hooks/pre-commit
+    echo -e "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
 
 # initialize dev environment
 [group('develop'), linux, macos]
