@@ -13,7 +13,7 @@ uv tool install --with jinja2-shell-extension --with jinja2-time copier
 
 ```shell
 uvx copier copy --trust --vcs-ref main gh:makukha/copython .
-just init
+just seed sync
 just pre-merge
 ```
 
@@ -22,8 +22,7 @@ just pre-merge
 ```shell
 uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) . .tmp
 cd .tmp
-just init
-just sync
+just seed sync
 just pre-merge
 ```
 
