@@ -76,7 +76,7 @@ docs_url:
     {%- if docs == 'github_readme' -%}
       {{ github_url }}#readme
     {%- elif docs == 'readthedocs' -%}
-      https://{{ project_name }}.rtfd.io
+      https://{{ project_name }}.readthedocs.io
     {%- endif -%}
     "
 
