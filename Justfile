@@ -46,7 +46,7 @@ lint:
 
 [private]
 tox-provision:
-    time {{ docker }} compose run --rm -it tox run --notest --skip-pkg-install
+    time {{ docker }} compose run --rm tox run --notest --skip-pkg-install
 
 # run tests
 [group('develop')]
@@ -55,7 +55,7 @@ test *toxargs: build
     mkdir -p .tox
     find .tox -name '.pass-*' -delete
     {{ if toxargs == "" { "just tox-provision" } else { "" } }}
-    time {{ docker }} compose run --rm -it tox \
+    time {{ docker }} compose run --rm tox \
         {{ if toxargs == "" { "run-parallel" } else { "run" } }} \
          --installpkg="$(find dist -name '*.whl')" {{toxargs}}
     make badges
@@ -64,7 +64,7 @@ test *toxargs: build
 # enter testing docker container
 [group('develop')]
 shell:
-    {{ docker }} compose run --rm -it --entrypoint bash tox
+    {{ docker }} compose run --rm --entrypoint bash tox
 
 # build python package
 [group('develop')]
