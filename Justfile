@@ -27,6 +27,7 @@ pre:
 [group('develop')]
 sync:
     chmod ug+x .git/hooks/*
+    uv lock
     uv sync --all-extras --all-groups --frozen
     make requirements
 
@@ -36,6 +37,7 @@ upgrade:
     uv sync --all-extras --all-groups --upgrade
     make requirements
     uvx copier update --trust --vcs-ref main
+    just sync
 
 # run linters
 [group('develop')]
