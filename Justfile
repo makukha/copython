@@ -112,7 +112,7 @@ changelog-collect:
 # publish package on PyPI
 [private]
 pypi-publish: build
-    uv publish
+    uv publish dist/pkg/* --token=$(bw get item __token__+makukha@pypi.org | yq .notes)
 
 #
 # --- Manage ---
