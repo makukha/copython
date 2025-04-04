@@ -100,7 +100,7 @@ version-bump:
     uv run bump-my-version show-bump
     printf 'Choose version part: '
     read PART
-    uv run bump-my-version bump "$PART"
+    uv run bump-my-version bump --tag "$PART"
     uv lock
 
 # collect changelog entries
