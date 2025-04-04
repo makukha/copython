@@ -4,14 +4,17 @@ mod git
 default:
 
 # get issue id of current GitHub branch
+[no-cd]
 issue-id:
     @git branch --show-current | cut -d- -f1
 
 # get issue title of current GitHub branch
+[no-cd]
 issue-title:
     @GH_PAGER=cat gh issue view "$(just gh::issue-id)" --json title -t '{{{{.title}}'
 
 # create GitHub pull request
+[no-cd]
 pr-create:
     #!/usr/bin/env sh
     set -eu
@@ -20,6 +23,7 @@ pr-create:
     gh pr create --web -t "$(just gh::issue-title)"
 
 # create GitHub release
+[no-cd]
 release-create tag:
     #!/usr/bin/env sh
     set -eu
@@ -31,10 +35,12 @@ release-create tag:
     gh release create --draft -t "{{tag}} — $(date -Idate)" --generate-notes "{{tag}}"
 
 # get "org/name" of current GitHub repository
+[no-cd]
 repo-name:
     @git config --get remote.origin.url | sed 's|.*/\(.*/.*\)\.git$|\1|
 
 # update GitHub repository metadata from pyproject.toml
+[no-cd]
 repo-update:
     #!/usr/bin/env sh
     set -eu
