@@ -78,14 +78,15 @@ testing = [
 # bump-my-version
 
 [tool.bumpversion]
-current_version = "{{ project_version }}"
 allow_dirty = true
+current_version = "{{ project_version }}"
 files = [
   {filename = ".copier-answers.yml"},
   {filename = "docs/badges.md"},
   {filename = "docs/sphinx/conf.py"},
   {filename = "src/{{ module_name }}/__version__.py"},
 ]
+tag = true
 
 # hatch
 
