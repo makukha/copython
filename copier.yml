@@ -101,7 +101,7 @@ python_version_minor:
 
 # badges
 
-opessf_bp_id:
+openssf_bp_id:
   type: str
   help: What is the project's OpenSSF Best Practices id?
   default: ""
