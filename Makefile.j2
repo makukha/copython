@@ -5,13 +5,13 @@ FORCE:
 # requirements
 
 .PHONY: requirements
-requirements: docs/sphinx/requirements.txt tests/requirements.txt
+requirements: tests/requirements.txt docs/sphinx/requirements.txt
+tests/requirements.txt: uv.lock
+	uv export --frozen --no-emit-project --no-hashes --only-group testing > $@
 {%- if readthedocs_tool == 'sphinx' %}
 docs/sphinx/requirements.txt: uv.lock
 	uv export --frozen --no-emit-project --only-group sphinx > $@
 {%- endif %}
-tests/requirements.txt: uv.lock
-	uv export --frozen --no-emit-project --no-hashes --only-group testing > $@
 
 # build
 
