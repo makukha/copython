@@ -123,11 +123,12 @@ allow_untyped_defs = false
 [tool.ruff]
 [tool.ruff.lint]
 select = [
+  "B",       # flake8-bugbear
   "E4",      # pycodestyle: Import
   "E7",      # pycodestyle: Statement
   "E9",      # pycodestyle: Runtime
   "F",       # pyflakes
-  "B",       # flake8-bugbear
+  "I",       # isort
   "RUF100",  # ruff: Unused `noqa` directive
   "S",       # flake8-bandit
 ]
