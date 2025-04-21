@@ -145,12 +145,13 @@ merge:
 [group('2-manage')]
 release:
     just version-bump
-    git push --tags
     just pre-merge
     just changelog-collect
     make sources
     @echo "Manually>>> Proofread the changelog and commit changes ..."
     @printf "Done? " && read _
+    git tag "v$(uv run bump-my-version show current_version)"
+    git push --tags
     just merge
     just gh::repo-update
     @echo "Manually>>> Update GitHub release notes and publish release ..."
