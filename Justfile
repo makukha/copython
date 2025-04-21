@@ -68,7 +68,6 @@ test *toxargs: build
     set -eu
     PKG="$(find dist/pkg -name '*.whl')"
     mkdir -p .tox
-    find .tox -name '.pass-*' -delete
     if [ "{{toxargs}}" = "" ]; then
         "{{docker}}" compose run --rm tox run --notest --skip-pkg-install
         "{{docker}}" compose run --rm tox run-parallel --installpkg="$PKG"
