@@ -1,29 +1,38 @@
 [tox]
-env_list = py27,py3{5,6,7,8,9,10,11,12,13,13t,14,14t}
+env_list = clean,py27,py3{5,6,7,8,9,10,11,12,13,13t,14,14t},cov
 skip_missing_interpreters = false
 labels =
   main = py{{ python_version_minor | replace('.', '') }}
+  default = py{{ python_version_minor | replace('.', '') }},cov
 
 [testenv]
+allowlist_externals =
+  coverage
+  find
+  touch
 deps = -r{toxinidir}/tests/requirements.txt
+
+[testenv:clean]
+skip_install = true
+commands =
+  coverage erase
+  find {toxworkdir} -name '.pass-*' -delete
 
 # main
 [testenv:py{{ python_version_minor | replace('.', '') }}]
-allowlist_externals = touch
 commands =
   python -m mypy .
   touch {envdir}/.pass-mypy
-  pytest -x \
-    --doctest-modules \
-    --cov={{ module_name }} \
-    --cov-branch \
-    --cov-precision=1 \
-    --cov-report=term \
-    --cov-report=html:.tmp/htmlcov \
-    --cov-report=xml:.tmp/coverage.xml \
-    --junitxml=.tmp/tests.xml \
-    src tests
+  coverage run --parallel-mode -m pytest -x --doctest-modules --junitxml=.tmp/tests.xml src tests
   touch {envdir}/.pass-pytest-cov
+
+[testenv:cov]
+depends = py{{ python_version_minor | replace('.', '') }}
+skip_install = true
+commands =
+  coverage combine .tmp/
+  coverage html
+  coverage xml
 
 # without mypy, pytest
 [testenv:py27,py3{5,6,7}]
@@ -35,7 +44,6 @@ commands =
 
 # with all
 [testenv:py3{8,9,10,11,12,13,13t}]
-allowlist_externals = touch
 commands =
   python -m mypy .
   touch {envdir}/.pass-mypy
