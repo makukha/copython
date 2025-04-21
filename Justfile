@@ -145,6 +145,7 @@ merge:
 [group('2-manage')]
 release:
     just version-bump
+    git push --tags
     just pre-merge
     just changelog-collect
     make sources
