@@ -155,6 +155,6 @@ release:
     just merge
     just gh::repo-update
     @echo "Manually>>> Update GitHub release notes and publish release ..."
-    just gh::release-create $(uv run bump-my-version show current_tag)
+    just gh::release-create "v$(uv run bump-my-version show current_version)"
     @printf "Done? " && read _
     just pypi-publish
