@@ -12,7 +12,7 @@ default:
 # --- Project specific ---
 #
 
-[group('0-use')]
+[group('0-app')]
 app:
 
 #
