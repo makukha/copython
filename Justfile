@@ -9,17 +9,20 @@ default:
     @just --list
 
 #
-# --- Seed ---
+# --- Project specific ---
 #
 
-# run once on project creation
-[group('0-seed')]
-seed:
-    echo -e "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
+[group('0-use')]
+app:
 
 #
 # --- Develop ---
 #
+
+# run once on project creation
+[group('1-develop')]
+seed:
+    echo -e "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
 
 # init dev environment
 [group('1-develop')]
