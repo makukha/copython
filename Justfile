@@ -59,10 +59,10 @@ upgrade:
 
 # run linters
 [group('1-develop')]
-lint:
-    uv run mypy .
-    uv run ruff check
-    uv run ruff format --diff
+lint *files:
+    uv run mypy {{ if files == '' { '.' } else { files } }}
+    uv run ruff check {{files}}
+    uv run ruff format --diff {{files}}
 
 # run tests
 [group('1-develop')]
