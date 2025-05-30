@@ -103,5 +103,5 @@ python_version_minor:
 
 openssf_bp_id:
   type: str
-  help: What is the project's OpenSSF Best Practices id?
+  help: What is the project's OpenSSF Best Practices id? See https://www.bestpractices.dev
   default: ""
