@@ -49,7 +49,7 @@ news:
 [group('1-develop')]
 sync:
     uv lock
-    uv sync --all-extras --all-groups --frozen
+    uv sync --all-extras --all-groups --all-packages --frozen
 
 # update dev environment
 [group('1-develop')]
