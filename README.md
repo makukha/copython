@@ -1,4 +1,4 @@
-# Just-based Copier template for Python
+# Python project template with Copier and Make
 [![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-border.json)](https://github.com/copier-org/copier)
 
 ## Usage

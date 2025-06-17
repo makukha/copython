@@ -3,11 +3,6 @@ mod git '.just/git.just'
 
 docker := if `command -v docker || true` == "" { "podman" } else { "docker" }
 
-
-# list commands
-default:
-    @just --list
-
 #
 # --- Project specific ---
 #
@@ -19,44 +14,6 @@ app:
 # --- Develop ---
 #
 
-# run once on project creation
-[group('1-develop')]
-seed:
-    echo -e "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
-
-# init dev environment
-[group('1-develop')]
-init:
-    chmod ug+x .git/hooks/*
-    brew install gh git uv yq
-
-# build python package
-[group('1-develop')]
-build: sync
-    make requirements build
-
-# build docs
-[group('1-develop')]
-docs: sync
-    make docs
-
-# add changelog news entry
-[group('1-develop')]
-news:
-    uv run scriv create
-
-# sunchronize dependencies
-[group('1-develop')]
-sync:
-    uv lock
-    uv sync --all-extras --all-groups --all-packages --frozen
-
-# update dev environment
-[group('1-develop')]
-upgrade:
-    uv sync --all-extras --all-groups --upgrade
-    uvx copier update --trust --vcs-ref main
-
 # run linters
 [group('1-develop')]
 lint *files:
@@ -66,11 +23,12 @@ lint *files:
 
 # run tests
 [group('1-develop')]
-test *toxargs: build
+test *toxargs:
     #!/usr/bin/env sh
     set -eu
     PKG="$(find dist/pkg -name '*.whl')"
     mkdir -p .tox
+    make package
     if [ "{{toxargs}}" = "" ]; then
         "{{docker}}" compose run --rm tox run --notest --skip-pkg-install
         "{{docker}}" compose run --rm tox run-parallel --installpkg="$PKG"
@@ -113,7 +71,8 @@ changelog-collect:
 
 # publish package on PyPI
 [private]
-pypi-publish: build
+pypi-publish:
+    make package
     uv publish dist/pkg/* --token=$(bw get item __token__+makukha@pypi.org | yq .notes)
 
 #

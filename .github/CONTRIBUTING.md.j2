@@ -21,7 +21,7 @@ You will need:
 - [Git](https://git-scm.com)
 - [yq](https://mikefarah.gitbook.io/yq)
 
-If your OS is macOS or Linux, some of them will be installed by `just init`.
+If your OS is macOS or Linux, some of them will be installed by `make init`.
 
 ### Initialize dev environment
 
@@ -31,7 +31,7 @@ If your OS is macOS or Linux, some of them will be installed by `just init`.
 
     ```shell
     git clone https://github.com/<YOUR_USER_NAME>/{{ project_name }}.git
-    just init build
+    make init docs
     ```
 
 ### Write code
@@ -45,7 +45,7 @@ The code will be checked with [Ruff](https://github.com/astral-sh/ruff) and
 ### Run lint and format checks
 
 ```shell
-just lint
+make lint
 ```
 
 There must be no errors.
@@ -74,10 +74,10 @@ There must be no errors.
 
     See `tox.ini` for details.
 
-### Build package and docs
+### Build docs and python package
 
 ```shell
-just build
+make docs package
 ```
 
 There must be no errors.
@@ -85,7 +85,7 @@ There must be no errors.
 ### Add changelog entry
 
 ```shell
-just news
+make news
 ```
 
 Edit the new `*.md` file added under `NEWS.d/`: uncomment the appropriate
