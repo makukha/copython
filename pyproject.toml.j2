@@ -15,7 +15,7 @@ urls.Homepage = "{{ github_url }}"
 urls.Repository = "{{ github_url }}"
 urls.Issues = "{{ github_url }}/issues"
 urls.Changelog = "{{ github_url }}/blob/main/CHANGELOG.md"
-keywords = []
+keywords = []  # TODO
 classifiers = [
   # see https://pypi.org/classifiers/
   "Development Status :: 4 - Beta",
@@ -58,8 +58,9 @@ dev = [
   "scriv>=1.5 ; python_version >= '{{ python_version_minor }}'",
   "typing_extensions>=4 ; python_version >= '{{ python_version_minor }}'",
 ]
+{%- if readthedocs_tool == 'sphinx' %}
 sphinx = [
-  # see readthedocs.yaml
+  # see .readthedocs.yaml
   "furo ; python_version >= '3.12'",
   "myst-parser ; python_version >= '3.12'",
   "sphinx ; python_version >= '3.12'",
@@ -67,6 +68,7 @@ sphinx = [
   "sphinx-design ; python_version >= '3.12'",
   "sphinx-sitemap ; python_version >= '3.12'",
 ]
+{%- endif %}
 testing = [
   "coverage>=7 ; python_version >= '{{ python_version_minor }}'",
   "doctestcase>=0.2.2",
