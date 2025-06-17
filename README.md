@@ -6,14 +6,14 @@
 ### Install
 
 ```shell
-uv tool install --with jinja2-shell-extension --with jinja2-time copier
+uv tool install copier --with jinja2-shell-extension --with jinja2-time
 ```
 
 ### Seed new project
 
 ```shell
 uvx copier copy --trust --vcs-ref main gh:makukha/copython .
-just seed sync
+make init
 just pre-merge
 ```
 
@@ -22,7 +22,7 @@ just pre-merge
 ```shell
 uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) . .tmp
 cd .tmp
-just seed sync
+make init
 just pre-merge
 ```
 

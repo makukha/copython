@@ -18,7 +18,7 @@ init:
     @command -v yq || echo 'Command "yq" not found, see https://github.com/mikefarah/yq'
     echo -e "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
     chmod ug+x .git/hooks/*
-    brew install gh git uv yq
+    make sync
 
 .PHONY: sync
 # synchronize development environment
