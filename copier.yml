@@ -64,7 +64,7 @@ pypi_url:
 
 docs:
   type: str
-  help: How will the project documentation?
+  help: How will the project documentation be published?
   choices:
     ReadTheDocs: readthedocs
     GitHub README.md: github_readme
