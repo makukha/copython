@@ -24,7 +24,7 @@ init:
 .PHONY: sync
 # Synchronize development environment
 sync: .venv
-.venv: pyproject.toml uv.lock
+.venv uv.lock &: pyproject.toml
 	uv lock --refresh
 	uv sync --all-extras --all-groups --all-packages --frozen
 uv.lock: pyproject.toml
