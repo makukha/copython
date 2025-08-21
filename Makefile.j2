@@ -26,10 +26,7 @@ init:
 # Synchronize development environment
 sync: .venv
 .venv uv.lock &: pyproject.toml
-	uv lock --refresh
 	uv sync --all-extras --all-groups --all-packages --frozen
-uv.lock: pyproject.toml
-	uv lock --refresh
 
 .PHONY: upgrade
 # Upgrade development environment
