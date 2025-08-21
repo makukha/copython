@@ -33,7 +33,7 @@ uv.lock: pyproject.toml
 .PHONY: upgrade
 # Upgrade development environment
 upgrade:
-	uv sync --all-extras --all-groups --upgrade
+	uv sync --all-extras --all-groups --all-packages --upgrade
 	uvx copier update --trust --vcs-ref main
 
 
