@@ -20,6 +20,7 @@ init:
 	@command -v yq || echo 'Command "yq" not found, see https://github.com/mikefarah/yq'
 	printf "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
 	chmod ug+x .git/hooks/*
+ 	uv sync
 	make sync
 
 .PHONY: sync
