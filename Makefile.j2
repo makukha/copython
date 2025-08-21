@@ -10,6 +10,7 @@ help:
 
 # Environment
 
+
 .PHONY: init
 # Initialize development environment
 init:
@@ -39,6 +40,7 @@ upgrade:
 
 # Development
 
+
 .PHONY: news
 # Add changelog news entry
 news:
@@ -59,6 +61,7 @@ dist/pkg: src/**/* README.md pyproject.toml uv.lock .venv
 
 # Docs
 
+
 .PHONY: docs
 docs: README.md{%- if readthedocs_tool == 'sphinx' %} dist/sphinx docs/sphinx/requirements.txt{% endif %}
 {%- if readthedocs_tool == 'sphinx' %}
@@ -74,6 +77,7 @@ README.md: docs/*.md
 
 
 # Sources
+
 
 .PHONY: sources
 sources: badges requirements README.md
