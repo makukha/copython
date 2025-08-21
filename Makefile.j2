@@ -2,9 +2,9 @@ SHELL = /usr/bin/env sh -eu
 
 FORCE:
 
-.PHONY: ls
+.PHONY: help
 # list available commands
-ls:
+help:
 	@sed -n 's/^\.PHONY: \(\S\+\)\( #\)\?/\1/p' Makefile
 
 
