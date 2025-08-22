@@ -21,7 +21,7 @@ init:
 	printf "#!/usr/bin/env sh\njust pre-commit" > .git/hooks/pre-commit
 	chmod ug+x .git/hooks/*
  	uv sync
-	make sync
+	make -B sync
 
 .PHONY: sync
 # Synchronize development environment
