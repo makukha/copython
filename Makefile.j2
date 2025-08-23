@@ -51,19 +51,19 @@ tests/requirements.txt: pyproject.toml uv.lock
 	uv export --frozen --no-emit-project --no-hashes --only-group testing > $@
 
 .PHONY: package
-package: dist/pkg
-dist/pkg: src/**/* README.md pyproject.toml uv.lock .venv
+package: .tmp/dist
+.tmp/dist: src/**/* README.md pyproject.toml uv.lock .venv
 	rm -rf $@
-	uv build -o dist/pkg
+	uv build
 
 
 # Docs
 
 
 .PHONY: docs
-docs: README.md{%- if readthedocs_tool == 'sphinx' %} dist/sphinx docs/sphinx/requirements.txt{% endif %}
+docs: README.md{%- if readthedocs_tool == 'sphinx' %} .tmp/sphinx docs/sphinx/requirements.txt{% endif %}
 {%- if readthedocs_tool == 'sphinx' %}
-dist/sphinx: docs/*.md docs/sphinx/*.* src/**/*.*
+.tmp/sphinx: docs/*.md docs/sphinx/*.* src/**/*.*
 	rm -rf $@
 	uv run sphinx-build -b html docs/sphinx $@
 docs/sphinx/requirements.txt: uv.lock
