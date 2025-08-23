@@ -35,12 +35,6 @@ sync: .venv
 news:
 	uv run scriv create
 
-.PHONY: changelog
-# Collect changelog entries.
-changelog:
-	uv run scriv collect
-	sed -e's/^### \(.*\)$$/***\1***/' -i'' CHANGELOG.md
-
 .PHONY: pre-commit
 # Run pre-commit hook.
 pre-commit:
@@ -59,23 +53,8 @@ update-template:
 	# todo: add interactive step to merge
 	make build
 
-.PHONY: version-bump
-# Bump project version.
-version-bump:
-	@uv run bump-my-version show-bump
-	@printf 'Choose version component: '; read V; printf $$V > .tmp/.bump
-	uv run bump-my-version bump --tag `cat .tmp/.bump`
-	@rm .tmp/.bump
-	uv lock
-
 # TODO: Manage
 
-## publish package on PyPI
-#[private]
-#pypi-publish:
-#    make package
-#    uv publish dist/pkg/* --token=$(bw get item __token__+makukha@pypi.org | yq .notes)
-#
 ## run pre-merge
 #[group('2-manage')]
 #pre-merge:
@@ -182,6 +161,30 @@ shell:
 clean:
 	rm -rf .coverage .tmp .tox .venv
 	find . -name __pycache__ -exec rm -rf {} \;
+
+
+# Release
+
+
+.PHONY: version-bump
+# Bump project version.
+version-bump:
+	@uv run bump-my-version show-bump
+	@printf 'Choose version component: '; read V; printf $$V > .tmp/.bump
+	uv run bump-my-version bump --tag `cat .tmp/.bump`
+	@rm .tmp/.bump
+	uv lock
+
+.PHONY: changelog
+# Collect changelog entries.
+changelog:
+	uv run scriv collect
+	sed -e's/^### \(.*\)$$/***\1***/' -i'' CHANGELOG.md
+
+.PHONY: publish
+# Publish package on PyPI.
+publish: package
+	hatch publish .tmp/dist/*.*
 
 
 # GitHub helpers
