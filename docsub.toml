@@ -2,4 +2,4 @@
 env_vars = { COLUMNS = "70" }
 
 [tool.docsub.logging]
-level = "DEBUG"
+level = "WARNING"
