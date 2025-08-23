@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "{{ project_name }}"
-description = ""  # todo: project description
+description = ""  # todo: add project description
 authors = [
   {name = "{{ author_name }}", email = "{{ author_email }}"},
 ]
@@ -15,7 +15,9 @@ urls.Homepage = "{{ github_url }}"
 urls.Repository = "{{ github_url }}"
 urls.Issues = "{{ github_url }}/issues"
 urls.Changelog = "{{ github_url }}/blob/main/CHANGELOG.md"
-keywords = []  # todo: add keywords
+keywords = [
+   # todo: add keywords
+]
 classifiers = [
   # see https://pypi.org/classifiers/
   "Development Status :: 4 - Beta",
@@ -46,7 +48,8 @@ dynamic = ["version"]
 
 requires-python = ">=2.7,!=3.0,!=3.1,!=3.2,!=3.3,!=3.4"
 dependencies = []
-{% if project_extras %}
+{%- if project_extras %}
+
 [project.optional-dependencies]
 all = [
   "{{ module_name }}[{{ project_extras }}]",
@@ -55,10 +58,6 @@ all = [
 {{ item }} = [
 ]
 {%- endfor %}
-{%- endif %}
-{% if project_scripts %}
-[project.scripts]
-{{ module_name }} = "{{ module_name }}.???:???"  # todo: specify script function
 {%- endif %}
 
 [dependency-groups]
@@ -90,6 +89,11 @@ testing = [
   "pytest>=8 ; python_version >= '3.8'",  # see tox.ini
   "pytest-sugar>=1 ; python_version >= '{{ python_version_minor }}'",
 ]
+{%- if project_scripts %}
+
+[project.scripts]
+{{ module_name }} = "{{ module_name }}.???:???"  # todo: specify script function
+{%- endif %}
 
 # bump-my-version
 
