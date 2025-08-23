@@ -92,7 +92,7 @@ testing = [
 {%- if project_script %}
 
 [project.scripts]
-{{ project_script_name }} = "{{ module_name }}.???:???"  # todo: specify script function
+{{ project_script_name }} = "{{ module_name }}.cli:cli"  # todo: specify script function
 {%- endif %}
 
 # bump-my-version
