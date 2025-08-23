@@ -20,6 +20,7 @@ just pre-merge
 ### Test template locally
 
 ```shell
+rm -rf .tmp
 uvx copier copy --trust --vcs-ref HEAD . .tmp
 cd .tmp
 make init

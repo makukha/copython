@@ -51,10 +51,10 @@ dependencies = []
 all = [
   "{{ module_name }}[{{ project_extras }}]",
 ]
-{% for item in project_extras.split(',') %}
+{%- for item in project_extras.split(',') %}
 {{ item }} = [
 ]
-{% endfor %}
+{%- endfor %}
 {%- endif %}
 {% if project_scripts %}
 [project.scripts]
