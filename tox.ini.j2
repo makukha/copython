@@ -11,6 +11,9 @@ allowlist_externals =
   find
   touch
 deps = -r{toxinidir}/tests/requirements.txt
+{%- if project_extras %}
+extras = all
+{%- endif %}
 
 [testenv:clean]
 skip_install = true
