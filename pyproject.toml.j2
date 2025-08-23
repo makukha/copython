@@ -85,7 +85,9 @@ current_version = "{{ project_version }}"
 files = [
   {filename = ".copier-answers.yml"},
   {filename = "docs/badges.md"},
+{%- if readthedocs_tool == 'sphinx' %}
   {filename = "docs/sphinx/conf.py"},
+{%- endif %}
   {filename = "src/{{ module_name }}/__version__.py"},
 ]
 
