@@ -196,7 +196,7 @@ clean:
 ## get issue title of current GitHub branch
 #[no-cd]
 #issue-title:
-#    @GH_PAGER=cat gh issue view "$(just gh::issue-id)" --json title -t '{{{{.title}}'
+#    @GH_PAGER=cat gh issue view "$(just gh::issue-id)" --json title -t '\{\{\{\{.title}}'
 #
 ## create GitHub pull request
 #[no-cd]
@@ -216,8 +216,8 @@ clean:
 #        echo "Can release from main branch only"
 #        exit 1
 #    fi
-#    git push origin tag "{{tag}}"
-#    gh release create --draft -t "{{tag}} — $(date -Idate)" --generate-notes "{{tag}}"
+#    git push origin tag "\{\{tag}}"
+#    gh release create --draft -t "\{\{tag}} — $(date -Idate)" --generate-notes "\{\{tag}}"
 #
 ## get "org/name" of current GitHub repository
 #[no-cd]
