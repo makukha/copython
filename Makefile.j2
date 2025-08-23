@@ -50,11 +50,13 @@ pre-commit:
 # Update project dependencies.
 update-dependencies:
 	uv sync --all-extras --all-groups --all-packages --upgrade
+	make pre-commit
 
 .PHONY: update-template
 # Update project template.
 update-template:
 	uvx copier update --trust --vcs-ref main
+	make pre-commit
 
 .PHONY: version-bump
 # Bump project version.
