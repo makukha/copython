@@ -89,10 +89,10 @@ testing = [
   "pytest>=8 ; python_version >= '3.8'",  # see tox.ini
   "pytest-sugar>=1 ; python_version >= '{{ python_version_minor }}'",
 ]
-{%- if project_scripts %}
+{%- if project_script %}
 
 [project.scripts]
-{{ module_name }} = "{{ module_name }}.???:???"  # todo: specify script function
+{{ project_script_name }} = "{{ module_name }}.???:???"  # todo: specify script function
 {%- endif %}
 
 # bump-my-version

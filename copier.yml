@@ -66,8 +66,8 @@ docs:
   type: str
   help: How will the project documentation be published?
   choices:
-    ReadTheDocs: readthedocs
     GitHub README.md: github_readme
+    ReadTheDocs: readthedocs
 
 docs_url:
   type: str
@@ -104,13 +104,19 @@ python_version_minor:
 
 project_extras:
   type: str
-  help: "Package extras as comma separated list, if any:"
+  help: "Project extras as comma separated list, if any:"
   default: ""
 
-project_scripts:
+project_script:
   type: bool
-  help: Does the package include scripts?
+  help: Does the project provide script command?
   default: false
+
+project_script_name:
+  type: str
+  help: What is the script command name?
+  when: "{{ project_script }}"
+  default: "{{ module_name }}"
 
 # badges
 
