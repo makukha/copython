@@ -99,6 +99,18 @@ python_version_minor:
   help: "Calculated minor Python version:"
   default: "{{ python_version.rsplit('.', 1)[0] }}"
 
+# project features
+
+project_extras:
+  type: str
+  help: "Package extras as comma separated list, if any:"
+  default: ""
+
+project_scripts:
+  type: bool
+  help: Does the package include scripts?
+  default: false
+
 # badges
 
 openssf_bp_id:

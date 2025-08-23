@@ -20,7 +20,7 @@ just pre-merge
 ### Test template locally
 
 ```shell
-uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) . .tmp
+uvx copier copy --trust --vcs-ref HEAD . .tmp
 cd .tmp
 make init
 just pre-merge
@@ -29,5 +29,5 @@ just pre-merge
 Update local testing instance:
 
 ```shell
-uvx copier copy --trust --vcs-ref $(git rev-parse --abbrev-ref HEAD) --data-file .tmp/.copier-answers.yml --overwrite . .tmp
+uvx copier copy --trust --vcs-ref HEAD --data-file .tmp/.copier-answers.yml --overwrite . .tmp
 ```

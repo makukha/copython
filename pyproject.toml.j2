@@ -46,6 +46,20 @@ dynamic = ["version"]
 
 requires-python = ">=2.7,!=3.0,!=3.1,!=3.2,!=3.3,!=3.4"
 dependencies = []
+{% if project_extras %}
+[project.optional-dependencies]
+all = [
+  "{{ module_name }}[{{ project_extras }}]",
+]
+{% for item in project_extras.split(',') %}
+{{ item }} = [
+]
+{% endfor %}
+{%- endif %}
+{% if project_scripts %}
+[project.scripts]
+{{ module_name }} = "{{ module_name }}.???:???"  # todo: specify script function
+{%- endif %}
 
 [dependency-groups]
 dev = [
