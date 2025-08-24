@@ -18,10 +18,9 @@ init:
 	@command -v gh || echo 'Command "gh" not found, see https://cli.github.com'
 	@command -v git || echo 'Command "git" not found, see https://git-scm.com'
 	@command -v lefthook || echo 'Command "lefthook" not found, see https://lefthook.dev'
+	@command -v podman || command -v docker || echo 'Command "podman" not found, see https://podman.io'
 	@command -v uv || echo 'Command "uv" not found, see https://docs.astral.sh/uv'
 	@command -v yq || echo 'Command "yq" not found, see https://github.com/mikefarah/yq'
-	lefthook install
-	uv sync
 	make -B sync
 
 .PHONY: sync
@@ -165,6 +164,13 @@ clean:
 
 # Release
 
+
+.PHONY: seed
+# Seed the repository after it is created.
+seed:
+	uv sync
+	make init
+	lefthook install
 
 .PHONY: version-bump
 # Bump project version.
