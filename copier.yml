@@ -28,6 +28,12 @@ module_name:
   help: What is the Python module name?
   default: "{{ project_name | lower | replace('-', '_') }}"
 
+project_description:
+  type: str
+  help: What is the project description?
+  default: |
+    {{ ('gh repo view ' + github_slug + ' --json description -t \'{{.description}}\'') | shell | trim('.') }}.
+
 project_version:
   type: str
   help: What is the project version?
