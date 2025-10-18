@@ -31,7 +31,7 @@ module_name:
 project_description:
   type: str
   help: What is the project description?
-  default: "{{ ('gh repo view ' + github_slug + ' --json description -t \'{{.description}}\'') | shell | trim('. \n') }}."
+  default: "{{ ('gh repo view ' + github_slug + ' --json description -t \\'{{.description}}\\'') | shell | trim | trim('.') }}."
 
 project_version:
   type: str
