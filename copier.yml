@@ -32,7 +32,7 @@ project_description:
   type: str
   help: What is the project description?
   default: |
-    {{ ('gh repo view ' + github_slug + ' --json description -t \'{{.description}}\'') | shell | trim | trim('.') }}.
+    {{ ('gh repo view ' + github_slug + ' --json description -t \'{{.description}}\'') | shell | trim('. \n') }}.
 
 project_version:
   type: str
