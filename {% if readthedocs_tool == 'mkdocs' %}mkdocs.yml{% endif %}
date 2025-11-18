@@ -1,0 +1,60 @@
+site_name: {{ project_name }}
+site_url: https://{{ project_name }}.readthedocs.io
+repo_url: {{ github_url }}
+repo_name: {{ github_slug }}
+plugins:
+  - search
+dev_addr: "0.0.0.0:8000"
+
+nav:
+  - Get Started: index.md
+  # todo: add more pages
+
+extra_css:
+  - https://use.fontawesome.com/releases/v7.1.0/css/all.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+      title: On this page
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.sections
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # auto
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    # light
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: light green
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # dark
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode

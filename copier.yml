@@ -79,9 +79,9 @@ docs_url:
   help: What is the documentation url?
   default: "
     {%- if docs == 'github_readme' -%}
-      {{ github_url }}#readme
+    {{ github_url }}#readme
     {%- elif docs == 'readthedocs' -%}
-      https://{{ project_name }}.readthedocs.io
+    https://{{ project_name }}.readthedocs.io
     {%- endif -%}
     "
 
@@ -90,6 +90,7 @@ readthedocs_tool:
   help: What documentation tool supported by ReadTheDocs will be used?
   choices:
     Sphinx: sphinx
+    MkDocs: mkdocs
   when: "{% if docs == 'readthedocs' %}true{% endif %}"
 
 # development

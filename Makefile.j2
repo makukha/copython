@@ -75,8 +75,11 @@ package: .tmp/dist
 
 .PHONY: docs
 # Build documentation.
-docs: README.md{%- if readthedocs_tool == 'sphinx' %} .tmp/sphinx docs/sphinx/requirements.txt{% endif %}
-{%- if readthedocs_tool == 'sphinx' %}
+docs: README.md{%- if readthedocs_tool == 'mkdocs' %} .tmp/mkdocs docs/mkdocs/requirements.txt{%- elif readthedocs_tool == 'sphinx' %} .tmp/sphinx docs/sphinx/requirements.txt{% endif %}
+{%- if readthedocs_tool == 'mkdocs' %}
+.tmp/mkdocs: docs/*.md docs/mkdocs/*.* src/**/*.*
+	uv run mkdocs build --clean --site-dir $@
+{%- elif readthedocs_tool == 'sphinx' %}
 .tmp/sphinx: docs/*.md docs/sphinx/*.* src/**/*.*
 	rm -rf $@
 	uv run sphinx-build -b html docs/sphinx $@

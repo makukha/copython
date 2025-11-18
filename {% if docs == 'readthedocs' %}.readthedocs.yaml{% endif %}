@@ -5,9 +5,14 @@ build:
   tools:
     python: "3.12"  # see pyproject.toml
 
+{%- if readthedocs_tool == 'mkdocs' %}
+mkdocs:
+  configuration: mkdocs.yml
+{%- elif readthedocs_tool == 'sphinx' %}
 sphinx:
   configuration: docs/sphinx/conf.py
+{%- endif %}
 
 python:
   install:
-    - requirements: docs/sphinx/requirements.txt
+    - requirements: docs/{{ readthedocs_tool }}/requirements.txt
