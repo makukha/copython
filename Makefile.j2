@@ -1,4 +1,7 @@
+MAKEFLAGS += --no-print-directory
 SHELL = /usr/bin/env sh -eu
+include .env
+
 PODMAN = $(shell command -v podman || command -v docker)
 
 FORCE:
