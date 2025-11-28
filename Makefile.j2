@@ -78,9 +78,10 @@ package: .tmp/dist
 
 .PHONY: docs
 # Build documentation.
-docs: README.md{%- if readthedocs_tool == 'mkdocs' %} .tmp/mkdocs docs/mkdocs/requirements.txt{%- elif readthedocs_tool == 'sphinx' %} .tmp/sphinx docs/sphinx/requirements.txt{% endif %}
+docs: README.md{%- if readthedocs_tool %} docs/requirements.txt .tmp/{{ readthedocs_tool }}{% endif %}
 {%- if readthedocs_tool == 'mkdocs' %}
 .tmp/mkdocs: docs/*.md docs/mkdocs/*.* src/**/*.*
+	rm -rf $@
 	uv run mkdocs build --clean --site-dir $@
 {%- elif readthedocs_tool == 'sphinx' %}
 .tmp/sphinx: docs/*.md docs/sphinx/*.* src/**/*.*
@@ -100,13 +101,9 @@ docs/img/badge/%.svg: .tmp/%.xml
 
 .PHONY: requirements
 # Export testing requirements.
-requirements: tests/requirements.txt{% if readthedocs_tool == 'sphinx' %} docs/sphinx/requirements.txt{%- endif %}
-tests/requirements.txt: pyproject.toml uv.lock
-	uv export --frozen --no-emit-project --no-hashes --only-group testing > $@
-{%- if readthedocs_tool == 'sphinx' %}
-docs/sphinx/requirements.txt: uv.lock
-	uv export --frozen --no-emit-project --only-group sphinx > $@
-{%- endif %}
+requirements: tests/requirements.txt{% if readthedocs_tool %} docs/requirements.txt{%- endif %}
+%/requirements.txt: pyproject.toml uv.lock
+	uv export --frozen --no-emit-project --only-group $* > $@
 
 .PHONY: test # [ TOXARGS="..." ]
 # Run tests, optionally pass extra args to tox.
