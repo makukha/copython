@@ -83,7 +83,7 @@ docs = [
   "sphinx-sitemap ; python_version >= '{{ readthedocs_python_version_minor }}'",
 {%- endif %}
 ]
-test = [
+tests = [
   "coverage>=7 ; python_version >= '{{ python_version_minor }}'",
   "doctestcase>=0.2.2,<0.3 ; python_version >= '{{ python_version_minor }}'",
   "mypy>=1 ; python_version >= '3.8'",  # see tox.ini
