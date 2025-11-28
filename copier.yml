@@ -93,6 +93,12 @@ readthedocs_tool:
     MkDocs: mkdocs
   when: "{% if docs == 'readthedocs' %}true{% endif %}"
 
+readthedocs_project_name:
+  type: str
+  help: What is the ReadTheDocs project name?
+  default: "{{ project_name }}"
+  when: "{% if docs == 'readthedocs' %}true{% endif %}"
+
 # development
 
 python_version:
