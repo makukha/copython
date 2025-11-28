@@ -115,7 +115,7 @@ readthedocs_project_name:
 readthedocs_python_version_minor:
   type: str
   help: What is the Python version to be used by ReadTheDocs?
-  default: 3.12
+  default: "3.12"
   when: "{% if docs == 'readthedocs' %}true{% endif %}"
 
 # project features
