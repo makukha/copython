@@ -65,6 +65,19 @@ pypi_url:
   help: "Calculated PyPI url:"
   default: https://pypi.org/project/{{ pypi_package_name }}
 
+# development
+
+python_version:
+  type: str
+  help: What is the development Python version? See https://www.python.org/downloads
+  placeholder: 3.x.y
+  validator: "{% if not python_version %}Python version is required{% endif %}"
+
+python_version_minor:
+  type: str
+  help: "Calculated minor Python version:"
+  default: "{{ python_version.rsplit('.', 1)[0] }}"
+
 # docs
 
 docs:
@@ -99,18 +112,11 @@ readthedocs_project_name:
   default: "{{ project_name }}"
   when: "{% if docs == 'readthedocs' %}true{% endif %}"
 
-# development
-
-python_version:
+readthedocs_python_version_minor:
   type: str
-  help: What is the development Python version? See https://www.python.org/downloads
-  placeholder: 3.x.y
-  validator: "{% if not python_version %}Python version is required{% endif %}"
-
-python_version_minor:
-  type: str
-  help: "Calculated minor Python version:"
-  default: "{{ python_version.rsplit('.', 1)[0] }}"
+  help: What is the Python version to be used by ReadTheDocs?
+  default: 3.12
+  when: "{% if docs == 'readthedocs' %}true{% endif %}"
 
 # project features
 
