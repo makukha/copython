@@ -72,16 +72,15 @@ dev = [
 ]
 docs = [
 {%- if readthedocs_tool == 'mkdocs' %}
-  "mkdocs ; python_version >= '3.12'",
-  "mkdocs-material ; python_full_version >= '3.12'",
+  "mkdocs ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "mkdocs-material ; python_full_version >= '{{ readthedocs_python_version_minor }}'",
 {%- elif readthedocs_tool == 'sphinx' %}
-  # see .readthedocs.yaml
-  "furo ; python_version >= '3.12'",
-  "myst-parser ; python_version >= '3.12'",
-  "sphinx ; python_version >= '3.12'",
-  "sphinx-copybutton ; python_version >= '3.12'",
-  "sphinx-design ; python_version >= '3.12'",
-  "sphinx-sitemap ; python_version >= '3.12'",
+  "furo ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "myst-parser ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "sphinx ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "sphinx-copybutton ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "sphinx-design ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "sphinx-sitemap ; python_version >= '{{ readthedocs_python_version_minor }}'",
 {%- endif %}
 ]
 test = [
