@@ -3,6 +3,7 @@ SHELL = /usr/bin/env sh -eu
 include .env
 
 PODMAN = $(shell command -v podman || command -v docker)
+RECOMMENDED_PYTHON_VERSION := 3.13
 
 FORCE:
 
@@ -17,15 +18,20 @@ help:
 
 .PHONY: init
 # Initialize development environment.
-init:
+init: .python-version .tmp
 	@command -v gh || echo 'Command "gh" not found, see https://cli.github.com'
 	@command -v git || echo 'Command "git" not found, see https://git-scm.com'
 	@command -v lefthook || echo 'Command "lefthook" not found, see https://lefthook.dev'
 	@command -v podman || command -v docker || echo 'Command "podman" not found, see https://podman.io'
 	@command -v uv || echo 'Command "uv" not found, see https://docs.astral.sh/uv'
 	@command -v yq || echo 'Command "yq" not found, see https://github.com/mikefarah/yq'
-	mkdir -p .tmp
 	make -B sync
+
+.python-version:
+	echo ${RECOMMENDED_PYTHON_VERSION} > $@
+
+.tmp:
+	mkdir $@
 
 .PHONY: sync
 # Synchronize development environment.
