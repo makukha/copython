@@ -2,8 +2,8 @@
 env_list = clean,py27,py3{5,6,7,8,9,10,11,12,13,13t,14,14t},cov
 skip_missing_interpreters = false
 labels =
-  main = py{{ python_version_minor | replace('.', '') }}
-  default = py{{ python_version_minor | replace('.', '') }},cov
+  main = py{{ min_dev_python_version | replace('.', '') }}
+  default = py{{ min_dev_python_version | replace('.', '') }},cov
 
 [testenv]
 allowlist_externals =
@@ -22,7 +22,7 @@ commands =
   find {toxworkdir} -name '.pass-*' -delete
 
 # main
-[testenv:py{{ python_version_minor | replace('.', '') }}]
+[testenv:py{{ min_dev_python_version | replace('.', '') }}]
 commands =
   python -m mypy .
   touch {envdir}/.pass-mypy
@@ -30,7 +30,7 @@ commands =
   touch {envdir}/.pass-pytest-cov
 
 [testenv:cov]
-depends = py{{ python_version_minor | replace('.', '') }}
+depends = py{{ min_dev_python_version | replace('.', '') }}
 skip_install = true
 commands =
   coverage combine .tmp/

@@ -62,37 +62,37 @@ all = [
 
 [dependency-groups]
 dev = [
-  "caseutil>=0.7.2 ; python_version >= '{{ python_version_minor }}'",
-  "docsub>=0.9.0 ; python_version >= '{{ python_version_minor }}'",
-  "mypy>=1.0 ; python_version >= '{{ python_version_minor }}'",
-  "questionary-cli==0.1.0 ; python_version >= '{{ python_version_minor }}'",
-  "ruff>=0.9 ; python_version >= '{{ python_version_minor }}'",
-  "scriv>=1.5 ; python_version >= '{{ python_version_minor }}'",
-  "typing_extensions>=4 ; python_version >= '{{ python_version_minor }}'",
+  "caseutil>=0.7.2 ; python_version >= '{{ min_dev_python_version }}'",
+  "docsub>=0.9.0 ; python_version >= '{{ min_dev_python_version }}'",
+  "mypy>=1.0 ; python_version >= '{{ min_dev_python_version }}'",
+  "questionary-cli==0.1.0 ; python_version >= '{{ min_dev_python_version }}'",
+  "ruff>=0.9 ; python_version >= '{{ min_dev_python_version }}'",
+  "scriv>=1.5 ; python_version >= '{{ min_dev_python_version }}'",
+  "typing_extensions>=4 ; python_version >= '{{ min_dev_python_version }}'",
 ]
 docs = [
 {%- if readthedocs_tool == 'mkdocs' %}
-  "mkdocs ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "mkdocs-material ; python_full_version >= '{{ readthedocs_python_version_minor }}'",
+  "mkdocs ; python_version >= '{{ readthedocs_python_version }}'",
+  "mkdocs-material ; python_full_version >= '{{ readthedocs_python_version }}'",
 {%- elif readthedocs_tool == 'sphinx' %}
-  "furo ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "myst-parser ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "sphinx ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "sphinx-copybutton ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "sphinx-design ; python_version >= '{{ readthedocs_python_version_minor }}'",
-  "sphinx-sitemap ; python_version >= '{{ readthedocs_python_version_minor }}'",
+  "furo ; python_version >= '{{ readthedocs_python_version }}'",
+  "myst-parser ; python_version >= '{{ readthedocs_python_version }}'",
+  "sphinx ; python_version >= '{{ readthedocs_python_version }}'",
+  "sphinx-copybutton ; python_version >= '{{ readthedocs_python_version }}'",
+  "sphinx-design ; python_version >= '{{ readthedocs_python_version }}'",
+  "sphinx-sitemap ; python_version >= '{{ readthedocs_python_version }}'",
 {%- endif %}
 ]
 tests = [
-  "coverage>=7 ; python_version >= '{{ python_version_minor }}'",
-  "doctestcase>=0.2.2,<0.3 ; python_version >= '{{ python_version_minor }}'",
+  "coverage>=7 ; python_version >= '{{ min_dev_python_version }}'",
+  "doctestcase>=0.2.2,<0.3 ; python_version >= '{{ min_dev_python_version }}'",
   "mypy>=1 ; python_version >= '3.8'",  # see tox.ini
   "pytest>=8 ; python_version >= '3.8'",  # see tox.ini
-  "pytest-sugar>=1 ; python_version >= '{{ python_version_minor }}'",
+  "pytest-sugar>=1 ; python_version >= '{{ min_dev_python_version }}'",
 ]
 release = [
-  "bump-my-version>=1.0 ; python_version >= '{{ python_version_minor }}'",
-  "genbadge[tests,coverage]>=1.1 ; python_version >= '{{ python_version_minor }}'",
+  "bump-my-version>=1.0 ; python_version >= '{{ min_dev_python_version }}'",
+  "genbadge[tests,coverage]>=1.1 ; python_version >= '{{ min_dev_python_version }}'",
 ]
 {%- if project_script %}
 

@@ -3,7 +3,7 @@ version: 2
 build:
   os: ubuntu-24.04
   tools:
-    python: "{{ readthedocs_python_version_minor }}"
+    python: "{{ readthedocs_python_version }}"
 
 {%- if readthedocs_tool == 'mkdocs' %}
 mkdocs:

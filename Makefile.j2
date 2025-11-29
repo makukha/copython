@@ -3,7 +3,7 @@ SHELL = /usr/bin/env sh -eu
 include .env
 
 PODMAN = $(shell command -v podman || command -v docker)
-RECOMMENDED_PYTHON_VERSION := 3.13
+RECOMMENDED_DEV_PYTHON_VERSION := 3.13
 
 FORCE:
 
@@ -28,7 +28,7 @@ init: .python-version .tmp
 	make -B sync
 
 .python-version:
-	echo ${RECOMMENDED_PYTHON_VERSION} > $@
+	echo ${RECOMMENDED_DEV_PYTHON_VERSION} > $@
 
 .tmp:
 	mkdir $@
